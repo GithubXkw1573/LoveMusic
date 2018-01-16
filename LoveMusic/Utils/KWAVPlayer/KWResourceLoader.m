@@ -35,7 +35,7 @@
 
 - (void)resourceLoader:(AVAssetResourceLoader *)resourceLoader didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest{
     NSLog(@"需要取消的数据  < requestedOffset = %lld, currentOffset = %lld, requestedLength = %ld >", loadingRequest.dataRequest.requestedOffset, loadingRequest.dataRequest.currentOffset, loadingRequest.dataRequest.requestedLength);
-    [self removeLoadingRequest:loadingRequest];
+    [self removeLoadingRequest:loadingRequest]; 
 }
 
 #pragma mark - KWRequestTaskDelegate
