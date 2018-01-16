@@ -1,0 +1,122 @@
+//
+//  PrefixHeader.pch
+//  LoveMusic
+//
+//  Created by kevin xu on 16/1/6.
+//  Copyright © 2016年 kevin xu. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+enum TypeEncodings {
+#if __LP64__
+    Char                = 'c',
+    Bool                = 'B',
+    Short               = 's',
+    Int                 = 'i',
+    Long                = 'l',
+    LongLong            = 'q',
+    UnsignedChar        = 'C',
+    UnsignedShort       = 'S',
+    UnsignedInt         = 'I',
+    UnsignedLong        = 'L',
+    UnsignedLongLong    = 'Q',
+    Float               = 'f',
+    Double              = 'd',
+    Object              = '@'
+#else
+    Bool                = 'c',
+    Short               = 's',
+    Int                 = 'i',
+    Long                = 'l',
+    LongLong            = 'q',
+    UnsignedChar        = 'C',
+    UnsignedShort       = 'S',
+    UnsignedInt         = 'I',
+    UnsignedLong        = 'L',
+    UnsignedLongLong    = 'Q',
+    Float               = 'f',
+    Double              = 'd',
+    Object              = '@'
+#endif
+    
+};
+
+#import <PureLayout/PureLayout.h>
+#import "NSObject+ModelParser.h"
+#import "PrintObject.h"
+#import "UILabelFactory.h"
+#import "KWHttpEngine.h"
+#import "UIColor+TKCategory.h"
+#import <UIImage+AFNetworking.h>
+#import <UIImageView+AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
+#import "UIImage+CornerRadius.h"
+#import "UIImageView+CornerRadius.h"
+
+#import "Masonry.h"
+
+#define IsPortrait ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
+
+//获取屏幕 宽度、高度
+#define SCREEN_WIDTH (IsPortrait ? MIN(([UIScreen mainScreen].bounds.size.width), ([UIScreen mainScreen].bounds.size.height)) : MAX(([UIScreen mainScreen].bounds.size.width), ([UIScreen mainScreen].bounds.size.height)))
+
+#define SCREEN_HEIGHT (IsPortrait ? MAX(([UIScreen mainScreen].bounds.size.width), ([UIScreen mainScreen].bounds.size.height)) : MIN(([UIScreen mainScreen].bounds.size.width), ([UIScreen mainScreen].bounds.size.height)))
+
+//屏幕顶部工具栏高度
+#define TOP_TOOL_BAR_HEIGHT 64.5
+//状态栏高度
+#define STATUS_BAR_HEIGHT 20
+
+#define WeakSelf(ws) __weak typeof(self) ws = self
+
+#define HORIZONTAL_SCALE pow(SCREEN_WIDTH / 375 , 0.6) //根据标注 375比45  768比70 计算
+#define VERTICAL_SCALE 1.5f
+#define SCREEN_SCALE SCREEN_WIDTH/375.0f
+#define SPACE_SCALE_DOUBLE 2.0f
+#define UNIVERSAL_WIDTH(originWidth) (CGFloat)(originWidth * HORIZONTAL_SCALE)
+#define UNIVERSAL_HEIGHT(originHeight) (ISPHONE ? originHeight : (originHeight * 1.5f))
+#define UNIVERSAL_SPACE_DOUBLE(originSpace) (ISPHONE ? originSpace : (originSpace * 2.0f))
+
+#define APP_FONT(size) [UIFont systemFontOfSize:size]
+#define APP_BOLD_FONT(size) [UIFont boldSystemFontOfSize:size]
+
+#define ISPHONE [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone
+
+#define APP_FONT_SMALL ISPHONE ? APP_FONT(12.0f) : APP_FONT(16.0f)
+
+#define APP_FONT_NORMAL ISPHONE ? APP_FONT(14.0f) : APP_FONT(18.0f)
+
+#define APP_FONT_LARGE ISPHONE ? APP_FONT(16.0f) : APP_FONT(22.0f)
+
+#define APP_FONT_TEN ISPHONE ? APP_FONT(10.0f) : APP_FONT(14.0f)
+
+#define APP_FONT_THIRTEEN ISPHONE ? APP_FONT(13.0f) : APP_FONT(17.0f)
+
+#define APP_FONT_EIGHTEEN ISPHONE ? APP_FONT(18.0f) : APP_FONT(24.0f)
+
+#define APP_FONT_TWENTY ISPHONE ? APP_FONT(20.0f) : APP_FONT(26.0f)
+
+#define APP_FONT_TWENTY_TWO ISPHONE ? APP_FONT(22.0f) : APP_FONT(28.0f)
+
+#define APP_FONT_FIFTEEN ISPHONE ? APP_FONT(15.0f) : APP_FONT(17.0f)
+
+#define APP_BOLD_FONT_SMALL ISPHONE ? APP_BOLD_FONT(12.0f) : APP_BOLD_FONT(16.0f)
+
+#define APP_BOLD_FONT_NORMAL ISPHONE ? APP_BOLD_FONT(14.0f) : APP_BOLD_FONT(18.0f)
+
+#define APP_BOLD_FONT_LARGE ISPHONE ? APP_BOLD_FONT(16.0f) : APP_BOLD_FONT(22.0f)
+
+#define APP_BOLD_FONT_TWENTY ISPHONE ? APP_BOLD_FONT(20.0f) : APP_BOLD_FONT(26.0f)
+
+
+#define NSSTRING_NOT_NIL(value)  value ? value : @""
+
+#define LM_BaseUrl @"http://music.163.com/api/"
+
+#endif /* PrefixHeader_pch */
